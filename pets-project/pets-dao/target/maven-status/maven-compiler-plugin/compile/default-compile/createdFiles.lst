@@ -1,0 +1,6 @@
+com\guo\pets\domain\Profile.class
+com\guo\pets\domain\ProfileExample.class
+com\guo\pets\domain\ProfileExample$GeneratedCriteria.class
+com\guo\pets\dao\ProfileMapper.class
+com\guo\pets\domain\ProfileExample$Criteria.class
+com\guo\pets\domain\ProfileExample$Criterion.class

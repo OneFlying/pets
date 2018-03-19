@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="gbk"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:task="http://www.springframework.org/schema/task" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context-3.1.xsd
+                        http://www.springframework.org/schema/mvc
+                        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+                        http://www.springframework.org/schema/task
+                        http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+
+    <context:annotation-config />
+
+    <!-- �Զ�ɨ��ð���ʹSpringMVC��Ϊ��������@controllerע������ǿ����� -->
+    <context:component-scan base-package="com.guo.pets" />
+    <mvc:annotation-driven>
+        <mvc:message-converters register-defaults="true">
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg value="UTF-8" />
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+
+
+    <bean id="stringHttpMessageConverter"
+          class="org.springframework.http.converter.StringHttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>text/plain;charset=UTF-8</value>
+            </list>
+        </property>
+    </bean>
+
+
+    <!--����IEִ��AJAXʱ������JSON���������ļ� -->
+    <bean id="mappingJacksonHttpMessageConverter"
+          class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>text/html;charset=UTF-8</value>
+            </list>
+        </property>
+    </bean>
+    <!-- ����SpringMVC��ע�⹦�ܣ���������ע��POJO��ӳ�� -->
+    <bean
+            class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <ref bean="stringHttpMessageConverter" />
+                <!--<ref bean="mappingJacksonHttpMessageConverter" />	&lt;!&ndash; JSONת���� &ndash;&gt;-->
+            </list>
+        </property>
+    </bean>
+    <!-- ������ת���ļ���ǰ��׺ ����ͼģʽ���� -->
+    <bean
+            class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!-- ����������ҵ�������Զ�������action�ķ���return���ַ�������ǰ׺�ͺ�׺�����һ�� ���õ�url��ַ -->
+        <property name="prefix" value="/" />
+        <property name="suffix" value="" />
+    </bean>
+
+    <!--<mvc:interceptors>-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/**"></mvc:mapping>-->
+            <!--&lt;!&ndash; �Զ���¼ &ndash;&gt;-->
+            <!--<mvc:exclude-mapping path="/ajax/main/autoLogin.do" />-->
+            <!--&lt;!&ndash; ��¼ &ndash;&gt;-->
+            <!--<mvc:exclude-mapping path="/ajax/main/login.do" />-->
+            <!--&lt;!&ndash; ע�� &ndash;&gt;-->
+            <!--<mvc:exclude-mapping path="/ajax/main/register.do" />-->
+            <!--&lt;!&ndash; ������֤�� &ndash;&gt;-->
+            <!--<mvc:exclude-mapping path="/ajax/main/yanzheng.do" />-->
+            <!--&lt;!&ndash; �л���˾ &ndash;&gt;-->
+            <!--<mvc:exclude-mapping path="/ajax/user/changeIdentity.do" />-->
+
+            <!--<mvc:exclude-mapping path="/ajax/profile/checkSms.do" />-->
+
+            <!--<mvc:exclude-mapping path="/ajax/main/qrloginweb.do" />-->
+
+            <!--<mvc:exclude-mapping path="/ajax/main/getRandomCode.do" />-->
+
+            <!--<mvc:exclude-mapping path="/ajax/main/yanzhengMobile.do" />-->
+
+            <!--<mvc:exclude-mapping path="/ajax/main/updatePwdByMobile.do" />-->
+
+
+
+            <!--<bean class="com.badu.btsaas.interceptors.AuthenticationInterceptor"></bean>-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
+
+    <!-- �����ļ��ϴ������û��ʹ���ļ��ϴ����Բ������ã���Ȼ������䣬��ô�����ļ���Ҳ���������ϴ������ -->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- Ĭ�ϱ��� -->
+        <property name="defaultEncoding" value="utf-8" />
+        <!-- �ļ���С���ֵ -->
+        <property name="maxUploadSize" value="10485760000" />
+        <!-- �ڴ��е����ֵ -->
+        <property name="maxInMemorySize" value="40960" />
+    </bean>
+
+    <!-- ����������ã�spring����ʶ��@Scheduledע��
+    <task:annotation-driven scheduler="qbScheduler"
+        mode="proxy" />
+    <task:scheduler id="qbScheduler" pool-size="10" />
+    -->
+</beans>
