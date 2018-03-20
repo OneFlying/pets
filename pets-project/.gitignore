@@ -10,13 +10,6 @@ gen
 /pets-webapp/target/*
 /pets-biz/target/*
 /pets-webapp/src/main/webapp/WEB-INF/classes/*
-pets-biz/src/main/Resources/
-pets-dao/target/generated-sources/
-pets-entity/src/main/java/
-pets-tool/src/main/resources/
-pets-tool/target/generated-sources/
-pets-utils/src/main/java/com/guo/pets/token/
-pets-utils/target/generated-sources/
-pets-webapp/src/main/java/
-pets-webapp/src/test/
-src/
+pets-dao/target/*
+pets-tool/target/*
+pets-utils/target/*
