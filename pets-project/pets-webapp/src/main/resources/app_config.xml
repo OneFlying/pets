@@ -54,8 +54,9 @@
 
     <!-- enable autowire -->
     <context:annotation-config />
-    <context:component-scan base-package="com.guo" />
-    <!--<cache:annotation-driven />-->
+    <context:component-scan base-package="com.pets" />
+    <!-- ehcache缓存 -->
+    <cache:annotation-driven/>
 
     <!-- define the SqlSessionFactory -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -80,6 +81,10 @@
         <property name="dataSource" ref="dataSource_local" />
     </bean>
 
+    <aop:config>
+        <aop:pointcut id="allServiceMethods" expression="execution(* com.guo.*.service.*.*(..))" />
+        <aop:advisor advice-ref="defaultTransactionAdvice" pointcut-ref="allServiceMethods" />
+    </aop:config>
     <!-- aop + tx -->
     <tx:advice id="defaultTransactionAdvice" transaction-manager="transactionManager">
         <tx:attributes>
@@ -92,12 +97,8 @@
         </tx:attributes>
     </tx:advice>
 
-    <aop:config>
-        <aop:pointcut id="allServiceMethods" expression="execution(* com.guo.*.service.*.*(..))" />
-        <aop:advisor advice-ref="defaultTransactionAdvice" pointcut-ref="allServiceMethods" />
-    </aop:config>
 
-    <!-- ehcache缓存 -->
+
     <bean id="defaultCacheManager"
           class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"
           scope="singleton">
@@ -111,80 +112,4 @@
         <property name="cacheManager"  ref="defaultCacheManager"/>
     </bean>
 
-
-    <bean id="GENERAL" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
-        <property name="cacheManager"  ref="defaultCacheManager" />
-        <property name="cacheName">
-            <value>GENERAL</value>
-        </property>
-    </bean>
-
-    <bean id="GENERALSHORT" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
-        <property name="cacheManager"  ref="defaultCacheManager" />
-        <property name="cacheName">
-            <value>GENERALSHORT</value>
-        </property>
-    </bean>
-
-
-    <bean id="GENERALLONG" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
-        <property name="cacheManager"  ref="defaultCacheManager" />
-        <property name="cacheName">
-            <value>GENERALLONG</value>
-        </property>
-    </bean>
-
-    <bean id="PAGE" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
-        <property name="cacheManager"  ref="defaultCacheManager" />
-        <property name="cacheName">
-            <value>PAGE</value>
-        </property>
-    </bean>
-
-
-
-    <!--<bean id="fileStore" class="com.badu.bdsaas.filestore.store.SftpFileStore" scope="prototype"/>-->
-    <!--&lt;!&ndash; 配置kaptcha验证码 &ndash;&gt;-->
-    <!--<bean id="captchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha">-->
-        <!--<property name="config">-->
-            <!--<bean class="com.google.code.kaptcha.util.Config">-->
-                <!--<constructor-arg type="java.util.Properties">-->
-                    <!--<props>-->
-                        <!--<prop key="kaptcha.image.width">90</prop>-->
-                        <!--<prop key="kaptcha.image.height">40</prop>-->
-                        <!--<prop key="kaptcha.border">no</prop>-->
-                        <!--<prop key="kaptcha.textproducer.font.color">30,144,255</prop>-->
-                        <!--<prop key="kaptcha.textproducer.font.size">26</prop>-->
-                        <!--<prop key="kaptcha.noise.impl">com.google.code.kaptcha.impl.NoNoise</prop>-->
-                        <!--<prop key="kaptcha.textproducer.char.string">0123456789abcdefghijklmnopqrstuvwxyz</prop>-->
-                        <!--<prop key="kaptcha.textproducer.char.length">4</prop>-->
-                    <!--</props>-->
-                <!--</constructor-arg>-->
-            <!--</bean>-->
-        <!--</property>-->
-    <!--</bean>-->
-    <!--&lt;!&ndash; 配置kaptcha验证码 &ndash;&gt;-->
-    <!--<bean id="captchaProducerMobile" class="com.google.code.kaptcha.impl.DefaultKaptcha">-->
-        <!--<property name="config">-->
-            <!--<bean class="com.google.code.kaptcha.util.Config">-->
-                <!--<constructor-arg type="java.util.Properties">-->
-                    <!--<props>-->
-                        <!--<prop key="kaptcha.image.width">350</prop>-->
-                        <!--<prop key="kaptcha.image.height">87</prop>-->
-                        <!--<prop key="kaptcha.border">no</prop>-->
-                        <!--<prop key="kaptcha.textproducer.font.color">7,175,250</prop>-->
-                        <!--<prop key="kaptcha.textproducer.char.space">10</prop>-->
-                        <!--<prop key="kaptcha.textproducer.font.size">84</prop>-->
-                        <!--<prop key="kaptcha.noise.impl">com.google.code.kaptcha.impl.DefaultNoise</prop>-->
-                        <!--<prop key="kaptcha.noise.color">7,175,250</prop>-->
-                        <!--<prop key="kaptcha.textproducer.char.string">0123456789abcdefghijklmnopqrstuvwxyz</prop>-->
-                        <!--<prop key="kaptcha.textproducer.char.length">4</prop>-->
-                        <!--<prop key="kaptcha.background.impl">com.google.code.kaptcha.impl.DefaultBackground</prop>-->
-                        <!--<prop key="kaptcha.background.clear.from">white</prop>-->
-                        <!--<prop key="kaptcha.background.clear.to">white</prop>-->
-                    <!--</props>-->
-                <!--</constructor-arg>-->
-            <!--</bean>-->
-        <!--</property>-->
-    <!--</bean>-->
 </beans>

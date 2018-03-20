@@ -146,6 +146,40 @@
             <artifactId>mybatis-spring</artifactId>
         </dependency>
 
+        <!-- ie json 转换出错jar -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.5.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.5.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.5.1</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache-core</artifactId>
+        </dependency>
+        <!-- 业务依赖 -->
+        <dependency>
+            <groupId>com.guo.pets</groupId>
+            <artifactId>pets-biz</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- 工具类依赖 -->
+        <dependency>
+            <groupId>com.guo.pets</groupId>
+            <artifactId>pets-utils</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
     </dependencies>
     <build>
         <!-- 设定Web应用中编译结果输出到WEB-INF/classes 中，与使用IDE时相同 -->
@@ -199,16 +233,16 @@
                     </configuration>
                 </plugin>
                 <!--<plugin>-->
-                    <!--<groupId>org.apache.maven.plugins</groupId>-->
-                    <!--<artifactId>maven-jar-plugin</artifactId>-->
-                    <!--<configuration>-->
-                        <!--<archive>-->
-                            <!--<index />-->
-                            <!--<manifest>-->
-                                <!--<addClasspath>true</addClasspath>-->
-                            <!--</manifest>-->
-                        <!--</archive>-->
-                    <!--</configuration>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-jar-plugin</artifactId>-->
+                <!--<configuration>-->
+                <!--<archive>-->
+                <!--<index />-->
+                <!--<manifest>-->
+                <!--<addClasspath>true</addClasspath>-->
+                <!--</manifest>-->
+                <!--</archive>-->
+                <!--</configuration>-->
                 <!--</plugin>-->
             </plugins>
         </pluginManagement>
