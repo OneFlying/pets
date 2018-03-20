@@ -19,13 +19,6 @@
      http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
-
-
-    <!--<bean id="businessJob" class="com.badu.btsaas.controller.util.BusinessJob">-->
-    <!--</bean>-->
-
-
-
     <!--<bean id="reloadFileServerConfig"-->
           <!--class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean"  >-->
         <!--<property name="targetObject" ref="businessJob" />-->
