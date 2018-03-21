@@ -10,6 +10,3 @@ gen
 /pets-webapp/target/*
 /pets-biz/target/*
 /pets-webapp/src/main/webapp/WEB-INF/classes/*
-pets-dao/target/*
-pets-tool/target/*
-pets-utils/target/*
