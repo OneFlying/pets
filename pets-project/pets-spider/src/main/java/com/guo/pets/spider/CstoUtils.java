@@ -1,4 +1,4 @@
-package org.pets.spider;
+package com.guo.pets.spider;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,6 +12,7 @@ import org.jsoup.select.Elements;
 
 import com.alibaba.fastjson.JSONObject;
 import com.guo.pets.entity.PrjInfo;
+
 
 /**
  * 
